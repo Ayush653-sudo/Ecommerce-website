@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-0  ">
+      <div class="mb-3 row" >
+          <div class="col-lg-6 mx-auto ">
+              <h3 class="alert text-center">Create An Account</h3>
+          <form action="/signup "  method="post">
+              {% if error %}
+              <div class="alert alert-danger" role="alert">
+                  {{error}}
+              </div>
+              {% endif %}
+
+    <label for="" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+     <input required type="Email" class="form-control" name="email" placeholder="example@email.com">
+    </div>
+
+    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input required type="password" class="form-control" id=""name="password">
+    </div>
+                     <label for="" class="col-sm-2 col-form-label">First Name</label>
+    <div class="col-sm-10">
+      <input required type="text" class="form-control" id="" name="first_name">
+    </div>
+              <label for="" class="col-sm-2 col-form-label">Last Name</label>
+    <div class="col-sm-10">
+      <input required type="text" class="form-control" id="" name="last_name">
+    </div>
+                 <label for="" class="col-sm-2 col-form-label">Phone</label>
+    <div class="col-sm-10">
+      <input required type="text" class="form-control" id="" name="phone">
+    </div>
+ {% csrf_token %}
+              <div class="foam-group text-center mt-2" >
+                  <input  type="submit" class="btn btn-lg btn-info" value="Create Account">
+              </div>
+          </form>
+  </div>
+      </div>
+</div>
+
+{% endblock %}
+
+

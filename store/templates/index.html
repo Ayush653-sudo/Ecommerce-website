@@ -1,0 +1,76 @@
+
+{% extends 'base.html'%}
+{% block content %}
+{% load cart %}
+ <div class="container-fluid mt-4">
+<div class="row">
+    <div class="col-lg-3">
+      <h3 class="text-center">Filter by category</h3>
+          <a href="/" class="list-group-item active">ALL PRODUCTS</a>
+        {% for categorie in categories %}
+        <br>
+      <a href="/?categorie={{categorie.id}}" class="list-group-item active">{{categorie.name}}</a></option>
+  {% endfor %}
+    </div>
+
+
+
+<div id="products" class="col-lg-8">
+    <div class="row mx-auto">
+      {%for product in products %}
+
+      <div class="card mx-auto my-3" id={{product.id}} style="max-width: 18rem;">
+  <img class="card-img-top" src="{{product.description.url}}"  alt="Card image Cap">
+  <div class="card-body">
+    <p class="card-title ">{{product.name}}</p>
+    <p class="card-text"><b>RS {{product.price}}</b></p>
+   <div class="card-footer no-gutter b-0 mt-2">
+     {% if product|is_in_cart:request.session.cart %}
+       <div class=" row ">
+             <form action="/" method="POST" class="col-2">
+                   {% csrf_token %}
+                  <input  hidden type="text" name="product" value="{{product.id}}">
+                  <input  hidden type="text" name="remove" value="True">
+                  <input type="submit" value="-" class="btn btn-block btn-info border-right">
+
+             </form>
+              <div class="text-center col">{{product|cart_qut:request.session.cart}}</div>
+             <form action="/" method="POST" class="col-2">
+                   {% csrf_token %}
+                  <input  hidden type="text" name="product" value="{{product.id}}">
+                  <input type="submit" value="+" class="btn btn-block btn-info border-left">
+
+             </form>
+          </div>
+
+          {% else %}
+           <form action="/" method="POST" class="btn-block mt-2">
+          {% csrf_token %}
+          <input  hidden type="text" name="product" value="{{product.id}}">
+
+         <input type="submit" class="float-right btn btn-info  form-control " value="ADD TO CART">
+         </form>
+
+
+          {% endif %}
+      </div>
+      </div>
+</div>
+      {% endfor %}
+  </div>
+    </div>
+  </div>
+ </div>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+{% endblock %}

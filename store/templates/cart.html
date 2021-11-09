@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{%block content %}
+{% load cart %}
+<h1 class="text-center">YOUR CART</h1>
+<div class="container mt-4">
+
+        <table class="table table-info">
+  <thead>
+    <tr>
+      <th scope="col">sno</th>
+        <th scope="col">Image</th>
+        <th scope="col">product</th>
+      <th scope="col">price</th>
+      <th scope="col">Quantity</th>
+         <th scope="col">Total</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for product in products %}
+    <tr>
+      <th scope="row">1</th>
+      <td><img style="height: 60px;" class="rounded-circle" src="{{product.description.url}}" alt="product image"></td>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product|cart_qut:request.session.cart}}</td>
+       <td>{{product|price_total:request.session.cart}}</td>
+    </tr>
+
+  {% endfor %}
+  <tfoot>
+        <tr>
+          <th colspan="5">Total</th>
+          <th>{{products|cart_total:request.session.cart}}</th>
+
+        </tr>
+
+        </tfoot>
+  </tbody>
+
+</table>
+    </div>
+  <hr>
+  <div class="m-3 p-3 text-center">
+
+   <input  type="submit" class="btn btn-outline-danger " data-bs-toggle="modal" data-bs-target="#exampleModal" value="submit">
+  </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delivery Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mt-2">
+            <form action="/checkout" method="POST">
+              {% csrf_token %}
+
+
+  <div class="mb-3 row">
+    <label for="" class="col-sm-2 col-form-label">Address</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="address" id="">
+    </div>
+  </div>
+              <div class="mb-3 row">
+    <label for="" class="col-sm-2 col-form-label">Phone</label>
+    <div class="col-sm-10">
+      <input type="text" name="phone" class="form-control" id="">
+    </div>
+  </div>
+              <div class="mb-3 row">
+    <label for="" class="col-sm-2 col-form-label">pincode</label>
+    <div class="col-sm-10">
+      <input type="text" name="pincode" class="form-control" id="">
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <label for="" class="col-sm-2 col-form-label">email</label>
+    <div class="col-sm-10">
+      <input type="Email" name="email" class="form-control" id="">
+    </div>
+  </div>
+  <div class="boostrap_switch-square">
+    <input  hidden type="text" name="uv" value="{{products|cart_total:request.session.cart}}">
+ <input type="checkbox" data_toggle="switch" name="online" vlaue='' />
+ <label>ONLINE PAYMENT</label>
+
+  </div>
+              <div class="text-center">
+               <input type="submit" class="btn btn-warning" value="checkout">
+              </div>
+            </form>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
