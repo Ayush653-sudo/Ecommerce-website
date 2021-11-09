@@ -11,3 +11,7 @@ It's a E commerce website with django server in backened,It has option of both o
 ### Login page
 
 <img src="images/Screenshot (22).png" >
+
+
+### Shopping page
+<img src="images/Screenshot (21).png">
