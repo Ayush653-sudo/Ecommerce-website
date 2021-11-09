@@ -4,7 +4,8 @@ It's a E commerce website with django server in backened,It has option of both o
 ![](gif/ezgif.com-gif-maker.gif)
 
 
-##Now it's time to show you some snapshot of it.
+
+# Now it's time to show you some snapshot of it.
 
 
 ### Login page
