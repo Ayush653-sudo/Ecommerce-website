@@ -27,7 +27,11 @@ It's a E commerce website with django server in backened,It has option of both o
 ### Payment page
 <img src="images/Screenshot (24).png">
 
+
+
+
+
 ### All orders 
 
-### Shopping page
+
 <img src="images/Screenshot (25).png">
